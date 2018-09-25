@@ -1,28 +1,41 @@
+#install.packages('rJava')
+#install.packages("Rwordseg", repos="http://R-Forge.R-project.org")
+#install.packages('wordcloud')
+#install.packages('wordcloud2')
+
+
+library(rJava)
+library(Rwordseg)
+library(wordcloud)
+library(wordcloud2)
+library(tm)
+
+
 getwd()
 setwd('C:/Users/Administrator/Documents/GitHub/play_20180925_wordcloud_whitenight')
 wordbase<-read.csv("white_night.txt")
 head(wordbase)
 
-## “‘º∞«Âœ¥ »•µÙ∏˜÷÷±Íµ„∑˚∫≈
+## ‰ª•ÂèäÊ∏ÖÊ¥ó ÂéªÊéâÂêÑÁßçÊ†áÁÇπÁ¨¶Âè∑
 word_clean<-NULL
 word_clean$msg <- gsub(pattern = " ", replacement ="", wordbase[,1]) 
-#»•ø’∏Ò
+#ÂéªÁ©∫Ê†º
 word_clean$msg <- gsub("\t", "", word_clean$msg) 
-#”– ±–Ë“™ π”√\\\t  
-word_clean$msg <- gsub(",", "£¨", word_clean$msg)
-#”¢Œƒ∂∫∫≈
+#ÊúâÊó∂ÈúÄË¶Å‰ΩøÁî®\\\t  
+word_clean$msg <- gsub(",", "Ôºå", word_clean$msg)
+#Ëã±ÊñáÈÄóÂè∑
 word_clean$msg <- gsub("~|'", "", word_clean$msg)
-#ÃÊªª¡À≤®¿À∫≈£®~£©∫Õ”¢Œƒµ•“˝∫≈£®'£©£¨À¸√«÷Æº‰”√°∞|°±∑˚∫≈∏Ùø™£¨±Ì æªÚµƒπÿœµ
+#ÊõøÊç¢‰∫ÜÊ≥¢Êµ™Âè∑Ôºà~ÔºâÂíåËã±ÊñáÂçïÂºïÂè∑Ôºà'ÔºâÔºåÂÆÉ‰ª¨‰πãÈó¥Áî®‚Äú|‚ÄùÁ¨¶Âè∑ÈöîÂºÄÔºåË°®Á§∫ÊàñÁöÑÂÖ≥Á≥ª
 word_clean$msg <- gsub("\\\"", "", word_clean$msg)
-#ÃÊªªÀ˘”–µƒ”¢ŒƒÀ´“˝∫≈£®"£©£¨“ÚŒ™À´“˝∫≈‘⁄R÷–”–Ãÿ ‚∫¨“Â£¨À˘“‘“™ π”√»˝∏ˆ–±∏‹£®\\\£©◊™“Â
+#ÊõøÊç¢ÊâÄÊúâÁöÑËã±ÊñáÂèåÂºïÂè∑Ôºà"ÔºâÔºåÂõ†‰∏∫ÂèåÂºïÂè∑Âú®R‰∏≠ÊúâÁâπÊÆäÂê´‰πâÔºåÊâÄ‰ª•Ë¶Å‰ΩøÁî®‰∏â‰∏™ÊñúÊù†Ôºà\\\ÔºâËΩ¨‰πâ
 
 head(word_clean)
 
-## ∑÷¥ 
+## ÂàÜËØç
 seg_word<-segmentCN(as.character(word_clean))
 seg_word
 
-## Õ≥º∆
+## ÁªüËÆ°
 words=unlist(lapply(X=smartcn, FUN=segmentCN))
 word=lapply(X=seg_word, FUN=strsplit, " ") 
 v=table(unlist(word))
@@ -32,7 +45,7 @@ d=subset(d, nchar(as.character(d$word))>1)
 head(d)
 
 
-## »•Õ£”√¥ 
+## ÂéªÂÅúÁî®ËØç
 write.table(v,file="word_result2.txt")
 ssc=read.table("word_result2.txt",header=TRUE)
 class(ssc)
@@ -42,12 +55,12 @@ stopwords=read.table("wordclean_list.txt")
 class(stopwords)
 stopwords=as.vector(stopwords[,1])
 wordResult=removeWords(ssc,stopwords)
-#»•ø’∏Ò
+#ÂéªÁ©∫Ê†º
 kkk=which(wordResult[,2]=="")
 wordResult=wordResult[-kkk,][,2:3]
 
 
-## ª≠¥ ‘∆
+## ÁîªËØç‰∫ë
 names(wordResult)
 write.table(wordResult,'white_night_cloud.txt')
 mydata<-read.table('white_night_cloud.txt')
