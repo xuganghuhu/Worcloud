@@ -1,0 +1,100 @@
+---
+title: "worcloud_WhiteNightWalk"
+author: "hu"
+date: "2018年10月8日"
+output: html_document
+---
+
+## 安装或载入需要的包
+```{r setup, include=FALSE}
+#install.packages('rJava')
+#install.packages("Rwordseg", repos="http://R-Forge.R-project.org")
+#install.packages('wordcloud')
+#install.packages('wordcloud2')
+library(rJava)
+library(Rwordseg)
+library(wordcloud)
+library(wordcloud2)
+library(tm)
+```
+
+## 读入文本
+
+```{r cars}
+getwd()
+setwd('C:/Users/Administrator/Documents/GitHub/play_20180925_wordcloud_whitenight')
+wordbase<-read.csv("white_night.txt")
+dim(wordbase)
+```
+
+## 数据清洗 去掉各种标点符号
+
+```{r}
+word_clean<-NULL
+word_clean$msg <- gsub(pattern = " ", replacement ="", wordbase[,1]) 
+word_clean$msg <- gsub("\t", "", word_clean$msg) 
+word_clean$msg <- gsub(",", "???", word_clean$msg)
+word_clean$msg <- gsub("~|'", "", word_clean$msg)
+word_clean$msg <- gsub("\\\"", "", word_clean$msg)
+#head(word_clean)
+```
+
+## 分词
+```{r}
+insertWords(c('亮司','雪穗'))
+seg_word<-segmentCN(as.character(word_clean))
+head(seg_word)
+```
+
+## 统计
+```{r}
+words=unlist(lapply(X=seg_word, FUN=segmentCN))
+word=lapply(X=seg_word, FUN=strsplit, " ") 
+v=table(unlist(word))
+v<-rev(sort(v))
+d<-data.frame(word=names(v),cnt=v)
+d=subset(d, nchar(as.character(d$word))>1)
+d[1:30,]
+
+```
+
+
+## 去停用词
+
+```{r}
+write.table(v,file="word_result2.txt")
+ssc=read.table("word_result2.txt",header=TRUE)
+class(ssc)
+ssc[1:10,]
+ssc=as.matrix(d)
+stopwords=read.table("wordclean_list.txt")
+class(stopwords)
+stopwords=as.vector(stopwords[,1])
+wordResult=removeWords(ssc,stopwords)
+#去空
+kkk=which(wordResult[,2]=="")
+wordResult=wordResult[-kkk,][,2:3]
+wordResult[1:40,]
+```
+
+## 画词云
+```{r}
+names(wordResult)
+write.table(wordResult,'white_night_cloud.txt')
+mydata<-read.table('white_night_cloud.txt')
+#mydata<-filter(mydata,mydata$cnt>=10)
+wordcloud2(mydata,size=4,fontFamily='楷体',figPath='boyandgirl.jpg')
+
+```
+
+## 带入图片
+```{r}
+names(wordResult)
+write.table(wordResult,'white_night_cloud.txt')
+mydata<-read.table('white_night_cloud.txt')
+#mydata<-filter(mydata,mydata$cnt>=10)
+wordcloud2(mydata,size=1,fontFamily='宋体') 
+```
+
+
+
