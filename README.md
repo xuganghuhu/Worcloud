@@ -11,11 +11,16 @@ jieba分词将文本打碎
 去停用词，删掉口语化的词汇
 根据清洗后的数据话词云
 
-第一幅词云：只想和你手牵手在阳光下散步
+词云1：
+只想和你手牵手在阳光下散步
 ![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result1.jpg)
 
-第二幅词云：我的天空没有太阳
+词云2：
+我的天空没有太阳（知乎~胡言就是在下本人）
 ![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result2.jpg)
 
-第三幅词云：亮司和雪穗
+词云3：
+亮司和雪穗（知乎~胡言就是在下本人）
 ![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result3.jpg)
+
+愿天下的小孩都能健康快乐的成长，原东野圭吾的故事都是骗人的。。
