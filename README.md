@@ -5,7 +5,7 @@
     我从来就没有太阳，所以不怕失去。
 
 
-本次实践尝试《白夜行》词云绘制，
-python和R两种语言
+##本次实践尝试《白夜行》词云绘制，
+###python和R两种语言
 
-![试一试](/github.com/xuganghuhu/worcloud-WalkingInWhiteNight/blob/master/boyandgirl.jpg)
+![pic](https://github.com/xuganghuhu/worcloud-WalkingInWhiteNight/blob/master/boyandgirl.jpg)
