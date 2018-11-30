@@ -8,4 +8,4 @@
 本次实践尝试《白夜行》词云绘制，
 python和R两种语言
 
-![试一试](ttps://github.com/xuganghuhu/worcloud-WalkingInWhiteNight/blob/master/boyandgirl.jpg)
+![试一试](/github.com/xuganghuhu/worcloud-WalkingInWhiteNight/blob/master/boyandgirl.jpg)
