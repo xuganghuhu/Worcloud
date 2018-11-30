@@ -6,6 +6,16 @@
 
 
 ## 本次实践尝试《白夜行》词云绘制，
-### python和R两种语言
+python和R两种语言
+jieba分词将文本打碎
+去停用词，删掉口语化的词汇
+根据清洗后的数据话词云
 
-![pic1](https://github.com/xuganghuhu/worcloud-WalkingInWhiteNight/blob/master/boyandgirl.jpg)
+第一幅词云：只想和你手牵手在阳光下散步
+![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result1.jpg)
+
+第二幅词云：我的天空没有太阳
+![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result2.jpg)
+
+第三幅词云：亮司和雪穗
+![pic1](https://github.com/xuganghuhu/Worcloud/blob/master/result3.jpg)
